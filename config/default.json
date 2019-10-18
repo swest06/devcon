@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://sean:regExLGS986@devcon-qefe3.mongodb.net/admin?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://sean:regExLGS986@devcon-qefe3.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken"
 }
