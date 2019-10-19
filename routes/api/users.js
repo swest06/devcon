@@ -65,9 +65,10 @@ router.post(
 
       user.password = await bcrypt.hash(password, salt);
 
+      // Save user to database
       await user.save();
 
-      // Return jsonwebtoken (enables user to login)
+      // Return jsonwebtoken (enables user to access protected routes). Set user id of token to mongodb id
       const payload = {
         user: {
           id: user.id
