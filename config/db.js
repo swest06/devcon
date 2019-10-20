@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const config = require("config");
 
-//gets values from config.json
+//gets uri value from config.json
 const db = config.get("mongoURI");
 
 //asyncronously connect to database
@@ -10,7 +10,8 @@ const dbConnect = async () => {
     await mongoose.connect(db, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
-      useCreateIndex: true
+      useCreateIndex: true,
+      useFindAndModify: false
     });
     console.log("MongoDB Connected...");
   } catch (error) {
