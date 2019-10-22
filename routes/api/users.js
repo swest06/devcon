@@ -14,7 +14,7 @@ const User = require("../../models/User");
 //@route POST api/users
 //@desc Register user route
 //@access Public
-
+// Registers users then sends back a jwt so protected routes can be accessed
 router.post(
   "/",
   // checks

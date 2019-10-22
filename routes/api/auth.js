@@ -12,8 +12,9 @@ const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
 
 // @route GET api/auth
-//@desc Test route
+//@desc Authenticate user and get token
 //@access Public
+// Allows users to login and get jwt so they can access protected routes
 router.get("/", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id) //finds user using id value from jsonwebtoken
