@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const config = require("config");
 
-//gets uri value from config.json
+//gets uri value from db.json in config
 const db = config.get("mongoURI");
 
 //asyncronously connect to database

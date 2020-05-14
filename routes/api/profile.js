@@ -14,10 +14,9 @@ const User = require("../../models/User");
 router.get("/me", auth, async (req, res) => {
   try {
     // Finds user info from database using req object
-    const profile = await Profile.findOne({ user: req.user.id }).populate(
-      "user",
-      ["name", "avatar"]
-    );
+    const profile = await Profile.findOne({
+      user: req.user.id,
+    }).populate("user", ["name", "avatar"]);
 
     if (!profile) {
       return res
@@ -26,6 +25,7 @@ router.get("/me", auth, async (req, res) => {
     }
 
     res.json(profile);
+    // console.log(profile);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
@@ -40,13 +40,9 @@ router.post(
   [
     auth,
     [
-      check("status", "Status required")
-        .not()
-        .isEmpty(),
-      check("skills", "Skills required")
-        .not()
-        .isEmpty()
-    ]
+      check("status", "Status required").not().isEmpty(),
+      check("skills", "Skills required").not().isEmpty(),
+    ],
   ],
   async (req, res) => {
     // Checks validation
@@ -68,7 +64,7 @@ router.post(
       facebook,
       twitter,
       instagram,
-      linkedin
+      linkedin,
     } = req.body;
 
     // Build profile object
@@ -82,7 +78,7 @@ router.post(
     if (status) profileFields.status = status;
     if (githubusername) profileFields.githubusername = githubusername;
     if (skills) {
-      profileFields.skills = skills.split(",").map(skills => skills.trim());
+      profileFields.skills = skills.split(",").map((skills) => skills.trim());
     }
 
     // Build social object (composition)
@@ -143,7 +139,7 @@ router.get("/", async (req, res) => {
 router.get("/user/:user_id", async (req, res) => {
   try {
     const profile = await Profile.findOne({
-      user: req.params.user_id
+      user: req.params.user_id,
     }).populate("user", ["name", "avatar"]);
 
     if (!profile) return res.status(400).json({ msg: "Profile not found" });
@@ -183,16 +179,10 @@ router.put(
   [
     auth,
     [
-      check("title", "Title is required")
-        .not()
-        .isEmpty(),
-      check("company", "Company is required")
-        .not()
-        .isEmpty(),
-      check("from", "From date is required")
-        .not()
-        .isEmpty()
-    ]
+      check("title", "Title is required").not().isEmpty(),
+      check("company", "Company is required").not().isEmpty(),
+      check("from", "From date is required").not().isEmpty(),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -208,7 +198,7 @@ router.put(
       from,
       to,
       current,
-      description
+      description,
     } = req.body;
 
     // Add data to 'new experience' object
@@ -219,7 +209,7 @@ router.put(
       from,
       to,
       current,
-      description
+      description,
     };
 
     try {
@@ -246,7 +236,7 @@ router.delete("/experience/:exp_id", auth, async (req, res) => {
 
     //get index of experience to delete
     const experienceIndex = profile.experience
-      .map(item => item.id)
+      .map((item) => item.id)
       .indexOf(req.params.exp_id);
 
     //remove experience from array
@@ -269,19 +259,11 @@ router.put(
   [
     auth,
     [
-      check("school", "School is required")
-        .not()
-        .isEmpty(),
-      check("degree", "Degree is required")
-        .not()
-        .isEmpty(),
-      check("fieldofstudy", "Field of study is required")
-        .not()
-        .isEmpty(),
-      check("from", "From date is required")
-        .not()
-        .isEmpty()
-    ]
+      check("school", "School is required").not().isEmpty(),
+      check("degree", "Degree is required").not().isEmpty(),
+      check("fieldofstudy", "Field of study is required").not().isEmpty(),
+      check("from", "From date is required").not().isEmpty(),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -297,7 +279,7 @@ router.put(
       from,
       to,
       current,
-      description
+      description,
     } = req.body;
 
     // Add data to 'new experience' object
@@ -308,7 +290,7 @@ router.put(
       from,
       to,
       current,
-      description
+      description,
     };
 
     try {
@@ -335,7 +317,7 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
 
     //get index of education to delete
     const educationIndex = profile.education
-      .map(item => item.id)
+      .map((item) => item.id)
       .indexOf(req.params.edu_id);
 
     //remove education from array
@@ -362,7 +344,7 @@ router.get("/github/:username", (req, res) => {
         "githubClientId"
       )}&client_secret=${config.get("githubSecret")}`,
       method: "GET",
-      headers: { "user-agent": "node.js" }
+      headers: { "user-agent": "node.js" },
     };
 
     request(options, (error, response, body) => {

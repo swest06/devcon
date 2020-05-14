@@ -12,9 +12,10 @@ const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
 
 // @route GET api/auth
-//@desc Authenticate user and get token
+//@desc Authenticate token and returns user data
 //@access Public
-// Allows users to login and get jwt so they can access protected routes
+// Path that loadUser calls
+// There already needs to be a token in local storage
 router.get("/", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id) //finds user using id value from jsonwebtoken
@@ -29,12 +30,13 @@ router.get("/", auth, async (req, res) => {
 //@route POST api/auth
 //@desc Authenticate user and get token
 //@access Public
+// Allows users to login and get jwt so they can access protected routes
 router.post(
   "/",
   // checks
   [
     check("email", "please inclunde a valid email").isEmail(),
-    check("password", "Password is required").exists()
+    check("password", "Password is required").exists(),
   ],
   async (req, res) => {
     // 'validationResult' contains the result of the 'checks'
@@ -68,8 +70,8 @@ router.post(
       // Return jsonwebtoken (enables user to access protected routes). Set user id of token to mongodb id
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
 
       jwt.sign(
