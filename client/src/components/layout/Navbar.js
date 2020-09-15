@@ -9,6 +9,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
+        <Link to="/profiles">Users</Link>
+      </li>
+      <li>
+        <Link to="/posts">Posts</Link>
+      </li>
+      <li>
         <Link to="/dashboard">
           <i className="fas fa-user"></i>
           <span className="hide-sm"> Dashboard</span>
@@ -27,7 +33,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="#!">Profiles</Link>
+        <Link to="/profiles">Users</Link>
       </li>
       <li>
         <Link to="/register">Register</Link>
@@ -39,11 +45,10 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   );
   return (
     <nav className="navbar bg-dark">
-      <h1>
-        <Link to="/">
-          <i className="fas fa-code"></i> PlaceholderName
-        </Link>
-      </h1>
+      <Link to="/">
+        {/* <i className="fas fa-code"></i> PlaceholderName */}
+        <img src="./tech-tie(cropped).png" alt="" className="logo" />
+      </Link>
 
       {!loading && (
         <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>

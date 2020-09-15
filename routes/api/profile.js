@@ -7,7 +7,7 @@ const { check, validationResult } = require("express-validator");
 
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
-
+const Post = require("../../models/Post");
 // @route GET api/profile/me
 // @desc Get current users profile
 // @access Private
@@ -25,7 +25,6 @@ router.get("/me", auth, async (req, res) => {
     }
 
     res.json(profile);
-    // console.log(profile);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
@@ -142,13 +141,17 @@ router.get("/user/:user_id", async (req, res) => {
       user: req.params.user_id,
     }).populate("user", ["name", "avatar"]);
 
-    if (!profile) return res.status(400).json({ msg: "Profile not found" });
+    if (!profile) {
+      return res.status(400).json({ msg: "Profile not found" });
+    }
+
     res.json(profile);
   } catch (error) {
     console.error(error.message);
     if (error.kind == "ObjectId") {
       return res.status(400).json({ msg: "Profile not found" });
     }
+
     res.status(500).send("Server Error");
   }
 });
@@ -159,6 +162,7 @@ router.get("/user/:user_id", async (req, res) => {
 router.delete("/", auth, async (req, res) => {
   try {
     // @todo - remove users posts
+    await Post.deleteMany({ user: req.user.id });
     // Remove profile
     await Profile.findOneAndRemove({ user: req.user.id });
     // Remove user
@@ -267,6 +271,7 @@ router.put(
   ],
   async (req, res) => {
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }

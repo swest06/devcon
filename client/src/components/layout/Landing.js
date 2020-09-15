@@ -13,10 +13,10 @@ const Landing = ({ isAuthenticated }) => {
     <section className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
-          <h1 className="x-large">Placeholder Name</h1>
+          <h1 className="x-large">TECH-TIE</h1>
           <p className="lead">
-            Are you a creative? Whether you're a Designer or a Developer, create
-            a profile and collaborate with other creatives.
+            Network with other tech professionals and create a profile to
+            showcase your skills and experience.
           </p>
           <div className="buttons">
             <Link to="/register" className="btn btn-primary">
