@@ -10,9 +10,11 @@ Node
 
 ![alt text](https://github.com/swest06/TECH-TIE/blob/master/client/src/img/screenshot-rocks%20(1).png)
 
-##Discussion
+## Discussion
 ![alt text](https://github.com/swest06/TECH-TIE/blob/master/client/src/img/screenshot-rocks%20(2).png)
 
+## Profile
 ![alt text](https://github.com/swest06/TECH-TIE/blob/master/client/src/img/screenshot-rocks%20(3).png)
 
+## User
 ![alt text](https://github.com/swest06/TECH-TIE/blob/master/client/src/img/screenshot-rocks%20(4).png)
