@@ -1,5 +1,5 @@
 # TECH-TIE 
-A fullstack social network application using the MERN stack.
+A full-stack social network application using the MERN stack.
 
 MongoDB,
 Express,
