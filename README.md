@@ -2,7 +2,7 @@
 A full-stack social network application using the MERN stack.
 
 MongoDB,
-Express,
+Node with Express,
 React,
 Node
 
