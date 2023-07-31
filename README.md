@@ -11,7 +11,7 @@ Node
 
 ![alt text](https://github.com/swest06/TECH-TIE/blob/master/client/src/img/screenshot-rocks%20(1).png)
 
-## Dashboard
+# Dashboard
 ![alt text](https://github.com/swest06/TECH-TIE/blob/master/client/src/img/screenshot-rocks%20(5).png)
 
 ## Profile
